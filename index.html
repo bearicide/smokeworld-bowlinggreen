@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Green Leaf BG | Bowling Green, KY</title>
+  <meta name="description" content="Green Leaf BG — a modern, green-forward cannabis & smoke shop experience in Bowling Green, Kentucky. 21+ only. Local prices. Local vibe." />
+
+  <!-- BASIC BRAND THEME -->
+  <style>
+    :root {
+      --green-dark: #0b3d2e;
+      --green-main: #1f8f5f;
+      --green-neon: #39ff9c;
+      --green-soft: #b7e6cf;
+      --black: #0b0b0b;
+      --gray: #1a1a1a;
+      --white: #f5fff9;
+      --warning: #ffcc00;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, var(--green-dark), var(--black) 60%);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--green-neon); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .hidden { display: none; }
+
+    /* AGE GATE */
+    #age-gate {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, #000, var(--green-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .age-box {
+      background: rgba(0,0,0,0.85);
+      border: 2px solid var(--green-neon);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(57,255,156,0.35);
+    }
+    .age-box h1 { margin-top: 0; }
+    .age-box button {
+      margin: 12px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+    .yes { background: var(--green-neon); color: #000; }
+    .no { background: #333; color: #aaa; }
+
+    /* HEADER */
+    header {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    nav a {
+      margin-left: 16px;
+      font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      margin-bottom: 16px;
+      color: var(--green-neon);
+    }
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 32px;
+      color: var(--green-soft);
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: var(--green-main);
+      color: #000;
+      font-weight: 800;
+      box-shadow: 0 0 24px rgba(57,255,156,0.4);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 64px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    section h2 {
+      color: var(--green-neon);
+      margin-bottom: 24px;
+    }
+
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #1f3d2f;
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 24px rgba(57,255,156,0.25);
+    }
+
+    /* PRICE COMPARISON */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #1f3d2f;
+      text-align: left;
+    }
+    th { color: var(--green-soft); }
+    .best { color: var(--green-neon); font-weight: 700; }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 24px;
+      background: #000;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    footer p { max-width: 900px; }
+
+  </style>
+</head>
+<body>
+
+<!-- AGE VERIFICATION -->
+<div id="age-gate">
+  <div class="age-box">
+    <h1>21+ Only</h1>
+    <p>You must be at least 21 years old to enter this site. By clicking YES, you confirm you meet the legal age requirement.</p>
+    <button class="yes" onclick="enterSite()">Yes, I’m 21+</button>
+    <button class="no" onclick="leaveSite()">No</button>
+    <p style="font-size:0.8rem; color:#777;">Kentucky law requires age verification for tobacco, vape, and hemp-derived products.</p>
+  </div>
+</div>
+
+<header>
+  <div class="logo">GREEN LEAF BG</div>
+  <nav>
+    <a href="#deals">Deals</a>
+    <a href="#compare">Price Check</a>
+    <a href="#law">Law Stuff</a>
+    <a href="#location">Location</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Bowling Green’s Greenest Shop</h1>
+  <p>Locally owned. Green-forward. No sketchy links, no fake security popups — just clean products, clear prices, and a modern in‑store experience.</p>
+  <a href="#deals" class="cta">See Today’s Deals</a>
+</div>
+
+<section id="deals">
+  <h2>🔥 Featured Deals</h2>
+  <div class="grid">
+    <div class="card">Flower — Buy 2 Get 1 (Select Strains)</div>
+    <div class="card">Delta / THCa Vapes — $10–$25 Tier</div>
+    <div class="card">Edibles — Mix & Match Discounts</div>
+    <div class="card">Glass & Accessories — Weekly Rotating Sales</div>
+  </div>
+</section>
+
+<section id="compare">
+  <h2>💸 Local Price Comparison</h2>
+  <p>We actively check nearby Bowling Green shops to keep pricing competitive.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Green Leaf BG</th>
+        <th>Shop A</th>
+        <th>Shop B</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1g Vape Cart</td>
+        <td class="best">$18</td>
+        <td>$22</td>
+        <td>$25</td>
+      </tr>
+      <tr>
+        <td>3.5g Flower</td>
+        <td class="best">$30</td>
+        <td>$35</td>
+        <td>$38</td>
+      </tr>
+      <tr>
+        <td>Edible Pack</td>
+        <td class="best">$15</td>
+        <td>$18</td>
+        <td>$20</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="law">
+  <h2>⚖️ Legal & Compliance</h2>
+  <div class="card">
+    <p>All products sold comply with Kentucky and federal law, including Farm Bill–compliant hemp-derived cannabinoids where applicable.</p>
+    <p>No medical or recreational marijuana is sold unless permitted by current state law.</p>
+    <p>ID is required in-store. Age verification is mandatory.</p>
+    <p>This website is informational only and does not facilitate online cannabis sales.</p>
+  </div>
+</section>
+
+<section id="location">
+  <h2>📍 Find Us</h2>
+  <div class="card">
+    <p><strong>Green Leaf BG</strong></p>
+    <p>Bowling Green, Kentucky</p>
+    <p>Locally owned • Walk-ins welcome</p>
+    <p><a href="https://www.google.com/maps" target="_blank">Open in Google Maps</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Green Leaf BG. All rights reserved. This site uses basic cookies for age verification only. No tracking nonsense. No fake security screens.</p>
+</footer>
+
+<script>
+  function enterSite() {
+    document.getElementById('age-gate').style.display = 'none';
+    localStorage.setItem('ageVerified', 'true');
+  }
+
+  function leaveSite() {
+    window.location.href = 'https://www.responsibility.org/';
+  }
+
+  if (localStorage.getItem('ageVerified') === 'true') {
+    document.getElementById('age-gate').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
