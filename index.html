@@ -3,281 +3,960 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Green Leaf BG | Bowling Green, KY</title>
-  <meta name="description" content="Green Leaf BG — a modern, green-forward cannabis & smoke shop experience in Bowling Green, Kentucky. 21+ only. Local prices. Local vibe." />
+  <title>Green Leaf BG | Bowling Green, KY | 21+ Smoke & Hemp Shop</title>
+  <meta name="description" content="Green Leaf BG — Bowling Green’s green-forward smoke & hemp shop. 21+ only. Deals, product browsing, and local price checks. No sketchy redirects. Just clarity." />
+  <meta name="theme-color" content="#0a261c" />
 
-  <!-- BASIC BRAND THEME -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Green Leaf BG | Bowling Green, KY" />
+  <meta property="og:description" content="21+ only. Clean, green-forward shop with deals, product browsing, and local price checks." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon placeholder (optional) -->
+  <!-- <link rel="icon" href="assets/favicon.png" /> -->
+
   <style>
-    :root {
-      --green-dark: #0b3d2e;
-      --green-main: #1f8f5f;
-      --green-neon: #39ff9c;
-      --green-soft: #b7e6cf;
-      --black: #0b0b0b;
-      --gray: #1a1a1a;
-      --white: #f5fff9;
-      --warning: #ffcc00;
+    :root{
+      --green-dark:#0a261c;
+      --green-ink:#0b3d2e;
+      --green-main:#1f8f5f;
+      --green-neon:#39ff9c;
+      --mint:#b7e6cf;
+      --bg:#050705;
+      --card:rgba(0,0,0,.70);
+      --stroke:#183426;
+      --muted:rgba(183,230,207,.78);
+      --warn:#ffcc00;
+      --bad:#ff5c5c;
+      --good:#39ff9c;
+      --shadow:0 0 26px rgba(57,255,156,.20);
     }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: radial-gradient(circle at top, var(--green-dark), var(--black) 60%);
-      color: var(--white);
-      overflow-x: hidden;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 600px at 50% 0%, rgba(57,255,156,.10), transparent 60%),
+        radial-gradient(900px 600px at 0% 30%, rgba(31,143,95,.10), transparent 60%),
+        radial-gradient(900px 600px at 100% 30%, rgba(31,143,95,.10), transparent 60%),
+        linear-gradient(180deg, var(--green-dark), var(--bg) 60%);
+      color:#f5fff9;
+      overflow-x:hidden;
     }
-
-    a { color: var(--green-neon); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .hidden { display: none; }
+    a{color:var(--green-neon);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+    .hidden{display:none}
+    .sr{position:absolute;left:-9999px}
 
     /* AGE GATE */
-    #age-gate {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(160deg, #000, var(--green-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+    #ageGate{
+      position:fixed; inset:0; z-index:9999;
+      display:flex; align-items:center; justify-content:center;
+      background:
+        radial-gradient(800px 600px at 50% 0%, rgba(57,255,156,.18), transparent 60%),
+        linear-gradient(160deg, #000, var(--green-dark));
     }
-    .age-box {
-      background: rgba(0,0,0,0.85);
-      border: 2px solid var(--green-neon);
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 0 40px rgba(57,255,156,0.35);
+    .gate{
+      width:min(520px, 92vw);
+      background:rgba(0,0,0,.82);
+      border:2px solid var(--green-neon);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 0 40px rgba(57,255,156,.28);
+      text-align:center;
     }
-    .age-box h1 { margin-top: 0; }
-    .age-box button {
-      margin: 12px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
+    .gate h1{margin:0 0 10px;color:var(--green-neon);letter-spacing:.03em}
+    .gate p{margin:10px 0;color:var(--muted);line-height:1.4}
+    .gate .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      border:0; cursor:pointer; border-radius:999px;
+      padding:12px 18px; font-weight:800;
+      transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;
+      box-shadow:0 0 0 rgba(0,0,0,0);
     }
-    .yes { background: var(--green-neon); color: #000; }
-    .no { background: #333; color: #aaa; }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:var(--green-neon); color:#000}
+    .btn.ghost{background:#1a1a1a; color:#cfcfcf; border:1px solid #333}
+    .btn.small{padding:10px 14px; font-weight:700}
+    .btn.primary:hover{filter:brightness(1.05); box-shadow:var(--shadow)}
+    .btn.ghost:hover{filter:brightness(1.08)}
 
     /* HEADER */
-    header {
-      padding: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    header{
+      position:sticky; top:0; z-index:2000;
+      background:rgba(0,0,0,.62);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(24,52,38,.8);
     }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
     }
-    nav a {
-      margin-left: 16px;
-      font-weight: 600;
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:900; letter-spacing:.04em;
     }
+    .brand img{width:40px;height:40px;display:block}
+    .brand .name{line-height:1}
+    .brand .name b{display:block;color:var(--green-neon);font-size:1.05rem}
+    .brand .name span{display:block;color:var(--muted);font-size:.82rem;margin-top:2px}
+
+    nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+    nav a{
+      color:var(--mint);
+      font-weight:700;
+      font-size:.92rem;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    nav a:hover{border-color:rgba(57,255,156,.25);text-decoration:none}
+
+    .utility{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border:1px solid rgba(57,255,156,.18);
+      border-radius:999px;
+      background:rgba(0,0,0,.35);
+      color:var(--muted);
+      font-size:.86rem;
+      white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 14px rgba(57,255,156,.35)}
 
     /* HERO */
-    .hero {
-      padding: 80px 24px;
-      text-align: center;
+    .hero{padding:54px 0 24px}
+    .heroGrid{
+      display:grid; gap:18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:stretch;
     }
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      margin-bottom: 16px;
-      color: var(--green-neon);
+    @media (max-width: 900px){
+      .heroGrid{grid-template-columns:1fr}
     }
-    .hero p {
-      max-width: 680px;
-      margin: 0 auto 32px;
-      color: var(--green-soft);
+    .heroCard{
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(24,52,38,.9);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 0 40px rgba(0,0,0,.25);
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(2rem, 4vw, 3.1rem);
+      color:var(--green-neon);
+      letter-spacing:.02em;
+    }
+    .hero p{margin:0 0 16px;color:var(--muted);line-height:1.5;max-width:68ch}
+    .heroActions{display:flex;gap:12px;flex-wrap:wrap}
+    .tagRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .tag{
+      border:1px solid rgba(57,255,156,.20);
+      background:rgba(0,0,0,.35);
+      color:var(--mint);
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:700;
+      font-size:.86rem;
+    }
+    .countdown{
+      display:grid; gap:12px;
+    }
+    .kpi{
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(24,52,38,.9);
+      border-radius:16px;
+      padding:16px;
+    }
+    .kpi b{display:block;color:var(--green-neon);font-size:1.1rem}
+    .kpi span{display:block;color:var(--muted);margin-top:6px;line-height:1.35}
+
+    /* SECTION */
+    section{padding:42px 0}
+    h2{margin:0 0 14px;color:var(--green-neon);letter-spacing:.02em}
+    .sub{margin:0 0 18px;color:var(--muted);max-width:90ch;line-height:1.5}
+
+    /* CARDS / GRID */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .card{
+      background:var(--card);
+      border:1px solid rgba(24,52,38,.9);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 0 40px rgba(0,0,0,.25);
+    }
+    .col-12{grid-column:span 12}
+    .col-8{grid-column:span 8}
+    .col-6{grid-column:span 6}
+    .col-4{grid-column:span 4}
+    .col-3{grid-column:span 3}
+    @media (max-width: 900px){
+      .col-8,.col-6,.col-4,.col-3{grid-column:span 12}
     }
 
-    .cta {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 999px;
-      background: var(--green-main);
-      color: #000;
-      font-weight: 800;
-      box-shadow: 0 0 24px rgba(57,255,156,0.4);
+    /* DEALS */
+    .deal{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      padding:14px; border-radius:16px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(57,255,156,.18);
+    }
+    .deal b{color:var(--mint);font-size:1.02rem}
+    .deal small{display:block;color:var(--muted);margin-top:4px;line-height:1.35}
+    .badge{
+      font-weight:900;
+      color:#000;
+      background:var(--green-neon);
+      border-radius:999px;
+      padding:8px 10px;
+      white-space:nowrap;
     }
 
-    /* SECTIONS */
-    section {
-      padding: 64px 24px;
-      max-width: 1100px;
-      margin: 0 auto;
+    /* PRODUCT BROWSER */
+    .controls{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+      margin-bottom:12px;
     }
-    section h2 {
-      color: var(--green-neon);
-      margin-bottom: 24px;
+    .input, select{
+      background:rgba(0,0,0,.40);
+      color:var(--mint);
+      border:1px solid rgba(57,255,156,.18);
+      padding:10px 12px;
+      border-radius:12px;
+      outline:none;
+      min-width: 200px;
     }
+    .input::placeholder{color:rgba(183,230,207,.55)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      cursor:pointer;
+      border:1px solid rgba(57,255,156,.18);
+      background:rgba(0,0,0,.30);
+      color:var(--mint);
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:800;
+      font-size:.86rem;
+    }
+    .chip.active{background:rgba(57,255,156,.14); border-color:rgba(57,255,156,.42); color:var(--green-neon)}
+    .products{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .prod{
+      padding:14px;border-radius:16px;
+      border:1px solid rgba(24,52,38,.9);
+      background:rgba(0,0,0,.38);
+    }
+    .prod h3{margin:0 0 6px;font-size:1.02rem;color:var(--mint)}
+    .prod p{margin:0 0 10px;color:var(--muted);line-height:1.35}
+    .row2{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    .price{font-weight:900;color:var(--green-neon);font-size:1.05rem}
+    .meta{font-size:.84rem;color:rgba(183,230,207,.70)}
+    .fine{font-size:.82rem;color:rgba(183,230,207,.65);line-height:1.35;margin-top:8px}
 
-    /* CARDS */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-    .card {
-      background: rgba(0,0,0,0.7);
-      border: 1px solid #1f3d2f;
-      border-radius: 16px;
-      padding: 24px;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 24px rgba(57,255,156,0.25);
-    }
+    /* PRICE CHECK TABLE */
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:12px;border-bottom:1px solid rgba(24,52,38,.9);text-align:left}
+    th{color:rgba(183,230,207,.9);font-size:.9rem}
+    .best{color:var(--green-neon);font-weight:900}
+    .worse{color:rgba(245,255,249,.85)}
+    .note{color:rgba(183,230,207,.70);font-size:.86rem;line-height:1.45;margin-top:10px}
 
-    /* PRICE COMPARISON */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
+    /* FAQ */
+    details{
+      border:1px solid rgba(57,255,156,.18);
+      background:rgba(0,0,0,.30);
+      border-radius:14px;
+      padding:12px 14px;
     }
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #1f3d2f;
-      text-align: left;
-    }
-    th { color: var(--green-soft); }
-    .best { color: var(--green-neon); font-weight: 700; }
+    summary{cursor:pointer;font-weight:900;color:var(--mint)}
+    details p{color:var(--muted);line-height:1.5;margin:10px 0 0}
 
     /* FOOTER */
-    footer {
-      padding: 32px 24px;
-      background: #000;
-      font-size: 0.9rem;
-      color: #aaa;
+    footer{
+      padding:30px 0;
+      border-top:1px solid rgba(24,52,38,.9);
+      background:#000;
+      color:#aaa;
+      font-size:.92rem;
     }
-    footer p { max-width: 900px; }
 
+    /* TOAST */
+    .toast{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background:rgba(0,0,0,.82);
+      border:1px solid rgba(57,255,156,.22);
+      border-radius:999px;
+      padding:10px 14px;
+      color:var(--mint);
+      box-shadow:var(--shadow);
+      z-index:4000;
+      display:none;
+      max-width:min(92vw, 820px);
+    }
+
+    /* COOKIE (minimal) */
+    #cookieBar{
+      position:fixed; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,.80);
+      border-top:1px solid rgba(57,255,156,.22);
+      padding:12px 0;
+      z-index:3500;
+      display:none;
+    }
+    #cookieBar .row{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    #cookieBar p{margin:0;color:var(--muted);max-width:88ch;line-height:1.35}
   </style>
+
+  <!-- LocalBusiness schema (edit placeholders) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Green Leaf BG",
+    "description": "Green-forward smoke & hemp shop in Bowling Green, KY. 21+ only. Deals, product browsing, and local price checks.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "YOUR STREET ADDRESS",
+      "addressLocality": "Bowling Green",
+      "addressRegion": "KY",
+      "postalCode": "42101",
+      "addressCountry": "US"
+    },
+    "telephone": "YOUR PHONE",
+    "areaServed": "Bowling Green, KY",
+    "url": "YOUR DOMAIN",
+    "openingHours": "Mo-Su 10:00-22:00"
+  }
+  </script>
 </head>
+
 <body>
-
-<!-- AGE VERIFICATION -->
-<div id="age-gate">
-  <div class="age-box">
-    <h1>21+ Only</h1>
-    <p>You must be at least 21 years old to enter this site. By clicking YES, you confirm you meet the legal age requirement.</p>
-    <button class="yes" onclick="enterSite()">Yes, I’m 21+</button>
-    <button class="no" onclick="leaveSite()">No</button>
-    <p style="font-size:0.8rem; color:#777;">Kentucky law requires age verification for tobacco, vape, and hemp-derived products.</p>
+  <!-- AGE GATE -->
+  <div id="ageGate">
+    <div class="gate">
+      <h1>21+ Only</h1>
+      <p>This website is for adults 21 and over. By entering, you confirm you meet the legal age requirement for age-restricted products.</p>
+      <div class="row">
+        <button class="btn primary" id="btnYes">Yes, I’m 21+</button>
+        <button class="btn ghost" id="btnNo">No</button>
+      </div>
+      <p style="margin-top:14px;font-size:.84rem;color:rgba(183,230,207,.65)">
+        Kentucky requires age verification for tobacco/vape and some hemp-derived products. We do not sell online.
+      </p>
+    </div>
   </div>
-</div>
 
-<header>
-  <div class="logo">GREEN LEAF BG</div>
-  <nav>
-    <a href="#deals">Deals</a>
-    <a href="#compare">Price Check</a>
-    <a href="#law">Law Stuff</a>
-    <a href="#location">Location</a>
-  </nav>
-</header>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <!-- Swap this src to your hosted logo path -->
+          <img src="green-leaf-bg-logo.png" alt="Green Leaf BG logo" onerror="this.style.display='none'">
+          <div class="name">
+            <b>GREEN LEAF BG</b>
+            <span>Bowling Green, Kentucky · 21+ only</span>
+          </div>
+        </div>
 
-<div class="hero">
-  <h1>Bowling Green’s Greenest Shop</h1>
-  <p>Locally owned. Green-forward. No sketchy links, no fake security popups — just clean products, clear prices, and a modern in‑store experience.</p>
-  <a href="#deals" class="cta">See Today’s Deals</a>
-</div>
+        <div class="utility">
+          <div class="pill"><span class="dot"></span><span id="openStatus">Checking hours…</span></div>
+          <button class="btn small primary" onclick="scrollToId('deals')">Today’s Deals</button>
+          <button class="btn small ghost" onclick="scrollToId('products')">Browse Products</button>
+        </div>
+      </div>
 
-<section id="deals">
-  <h2>🔥 Featured Deals</h2>
-  <div class="grid">
-    <div class="card">Flower — Buy 2 Get 1 (Select Strains)</div>
-    <div class="card">Delta / THCa Vapes — $10–$25 Tier</div>
-    <div class="card">Edibles — Mix & Match Discounts</div>
-    <div class="card">Glass & Accessories — Weekly Rotating Sales</div>
+      <nav aria-label="Primary navigation" class="wrap" style="padding-bottom:12px">
+        <a href="#deals">Deals</a>
+        <a href="#products">Products</a>
+        <a href="#pricecheck">Price Check</a>
+        <a href="#law">Law Stuff</a>
+        <a href="#faq">FAQ</a>
+        <a href="#location">Location</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <h1>Bowling Green’s Greenest Shop</h1>
+          <p>
+            No sketchy redirects. No fake “security” pages. Just a clean, green-forward shop experience:
+            transparent deals, easy browsing, and local price checks.
+          </p>
+          <div class="heroActions">
+            <button class="btn primary" onclick="scrollToId('deals')">See Deals</button>
+            <button class="btn ghost" onclick="scrollToId('pricecheck')">Compare Prices</button>
+            <button class="btn ghost" onclick="scrollToId('location')">Get Directions</button>
+          </div>
+
+          <div class="tagRow" aria-label="Highlights">
+            <div class="tag">21+ only</div>
+            <div class="tag">Local price checks</div>
+            <div class="tag">Green-forward brand</div>
+            <div class="tag">No online sales</div>
+          </div>
+        </div>
+
+        <div class="countdown">
+          <div class="kpi">
+            <b id="kpiDeal">3 featured deals live</b>
+            <span>Updated by staff in seconds, not once per lunar cycle.</span>
+          </div>
+          <div class="kpi">
+            <b id="kpiSavings">Price-check mode: ON</b>
+            <span>We keep a simple competitor table so customers can sanity-check value.</span>
+          </div>
+          <div class="kpi">
+            <b>Hemp-derived focus</b>
+            <span>Farm Bill–compliant items where applicable, plus smoke & accessory inventory.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEALS -->
+    <section id="deals">
+      <h2>🔥 Featured Deals</h2>
+      <p class="sub">These are placeholders. Swap in your real specials below in <code>DATA.deals</code> and they update instantly.</p>
+
+      <div class="grid">
+        <div class="card col-6">
+          <div id="dealsList" style="display:grid;gap:12px"></div>
+        </div>
+
+        <div class="card col-6">
+          <h3 style="margin:0 0 10px;color:var(--mint)">Quick Actions</h3>
+          <p class="sub" style="margin-bottom:10px">Tiny shop sites win by being useful, not fancy.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn primary" onclick="copyText(DATA.phone)">Copy Phone</button>
+            <button class="btn ghost" onclick="copyText(DATA.address)">Copy Address</button>
+            <button class="btn ghost" onclick="toast('Put real hours in DATA.hours for open/closed status.')">Hours Tip</button>
+          </div>
+          <p class="fine">
+            Tip: keep “Deals” and “Hours” updated and people stop calling you 47 times a day. Revolutionary.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+      <h2>🧪 Browse Products</h2>
+      <p class="sub">
+        A simple, fast browser. No cart, no online checkout, no legal headaches.
+        Just categories, pricing, and “ask in-store” notes.
+      </p>
+
+      <div class="card">
+        <div class="controls">
+          <input id="q" class="input" placeholder="Search (strain, brand, type)..." />
+          <select id="sort">
+            <option value="featured">Sort: Featured</option>
+            <option value="low">Sort: Price (Low)</option>
+            <option value="high">Sort: Price (High)</option>
+            <option value="az">Sort: A → Z</option>
+          </select>
+          <button class="btn small ghost" onclick="resetFilters()">Reset</button>
+        </div>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="products" id="productsGrid" style="margin-top:14px"></div>
+
+        <p class="fine">
+          Disclaimer: product availability changes. Prices shown are for transparency and may vary by vendor supply.
+          ID required in-store. 21+ only.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRICE CHECK -->
+    <section id="pricecheck">
+      <h2>💸 Local Price Check</h2>
+      <p class="sub">
+        “Compare to nearby shops” without pretending you’re a national chain.
+        This table is intentionally simple and editable.
+      </p>
+
+      <div class="card">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+          <div class="pill" title="Edit competitors in DATA.competitors"><span class="dot"></span><span>Competitor list is editable</span></div>
+          <button class="btn small ghost" onclick="toast('Edit DATA.priceCheckRows to match real comps. Keep it honest.')">How to update</button>
+        </div>
+
+        <table aria-label="Local price comparison table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th id="thUs">Green Leaf BG</th>
+              <th id="thA">Shop A</th>
+              <th id="thB">Shop B</th>
+            </tr>
+          </thead>
+          <tbody id="priceBody"></tbody>
+        </table>
+
+        <div class="note">
+          We keep this as a <b>general snapshot</b> so people know they’re not getting rinsed.
+          Exact pricing varies. If a competitor runs a flash sale, good for them, capitalism’s favorite sport.
+        </div>
+      </div>
+    </section>
+
+    <!-- LAW -->
+    <section id="law">
+      <h2>⚖️ Law Stuff (Readable Version)</h2>
+      <p class="sub">Not legal advice. Just enough clarity to keep customers informed and keep you out of trouble.</p>
+
+      <div class="grid">
+        <div class="card col-6">
+          <h3 style="margin:0 0 8px;color:var(--mint)">Compliance</h3>
+          <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.55">
+            <li>21+ only. ID required in-store.</li>
+            <li>Website is informational only. No online sales or shipping offered here.</li>
+            <li>Hemp-derived cannabinoids are sold only where compliant with federal and Kentucky law (where applicable).</li>
+            <li>No health/medical claims. If someone asks, the answer is “talk to a professional.”</li>
+          </ul>
+        </div>
+
+        <div class="card col-6">
+          <h3 style="margin:0 0 8px;color:var(--mint)">Responsible Use</h3>
+          <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.55">
+            <li>Keep away from kids/pets.</li>
+            <li>Do not drive impaired. “I’m fine” is not a legal strategy.</li>
+            <li>Products can affect people differently. Start low and slow.</li>
+            <li>Local ordinances can vary. Know your rules.</li>
+          </ul>
+        </div>
+
+        <div class="card col-12">
+          <p style="margin:0;color:rgba(183,230,207,.70);line-height:1.5">
+            <b>Important:</b> If Kentucky laws change, update this section. Don’t rely on vibes.
+            Keep the site factual and “informational.” It’s cleaner and safer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ + REVIEWS -->
+    <section id="faq">
+      <h2>❓ FAQ & Reviews</h2>
+      <p class="sub">Quick answers. Lower call volume. Everyone wins.</p>
+
+      <div class="grid">
+        <div class="card col-6">
+          <div style="display:grid;gap:10px">
+            <details open>
+              <summary>Do you sell online?</summary>
+              <p>No. This site is informational only. Come in-store with ID.</p>
+            </details>
+            <details>
+              <summary>Do you have real cannabis / marijuana?</summary>
+              <p>Inventory is compliant with current Kentucky and federal law. We do not make legal claims on this page. Ask in-store for what’s available.</p>
+            </details>
+            <details>
+              <summary>Can you recommend something for anxiety/pain/sleep?</summary>
+              <p>We can explain what products are and how people commonly use them, but we don’t give medical advice or make health claims.</p>
+            </details>
+            <details>
+              <summary>What do I need to bring?</summary>
+              <p>A valid ID proving you’re 21+. That’s it.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="card col-6">
+          <h3 style="margin:0 0 10px;color:var(--mint)">Customer Notes</h3>
+          <div id="reviews" style="display:grid;gap:10px"></div>
+          <p class="fine">Swap these for real Google review snippets (keep them short).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location">
+      <h2>📍 Location</h2>
+      <p class="sub">Put the real address and phone in <code>DATA</code>. Replace the map link with the real Google Maps share URL.</p>
+
+      <div class="grid">
+        <div class="card col-6">
+          <h3 style="margin:0 0 10px;color:var(--mint)">Visit Us</h3>
+          <p style="margin:0;color:var(--muted);line-height:1.6">
+            <b id="locName">Green Leaf BG</b><br/>
+            <span id="locAddress">Bowling Green, KY</span><br/>
+            <span id="locPhone">Phone: (000) 000-0000</span><br/>
+            <span id="locHours">Hours: set in DATA.hours</span>
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <a class="btn primary" id="mapBtn" href="https://www.google.com/maps" target="_blank" rel="noreferrer">Open Maps</a>
+            <button class="btn ghost" onclick="copyText(DATA.address)">Copy Address</button>
+            <button class="btn ghost" onclick="copyText(DATA.phone)">Copy Phone</button>
+          </div>
+        </div>
+
+        <div class="card col-6">
+          <h3 style="margin:0 0 10px;color:var(--mint)">Newsletter (Optional)</h3>
+          <p class="sub" style="margin-bottom:10px">Collect emails in-store or via a simple form endpoint (Mailchimp, etc.). This form is front-end only.</p>
+          <form onsubmit="event.preventDefault(); toast('Newsletter form is a placeholder. Connect it to an email provider.');">
+            <label class="sr" for="email">Email</label>
+            <input id="email" class="input" placeholder="you@email.com" style="width:100%;min-width:unset" />
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+              <button class="btn primary" type="submit">Sign Up</button>
+              <button class="btn ghost" type="button" onclick="toast('No spam. No tracking. Just deals.');">Privacy note</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p style="margin:0 0 10px;line-height:1.5;color:#aaa">
+        © <span id="year"></span> Green Leaf BG. 21+ only. Website is informational and does not facilitate online sales.
+      </p>
+      <p style="margin:0;line-height:1.5;color:#777">
+        Minimal cookies: age verification + basic preferences. No creepy tracking. No “security” popups. No nonsense.
+      </p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Cookie bar -->
+  <div id="cookieBar">
+    <div class="wrap row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <p>We only store basic preferences (like age verification). No ad tracking. No third-party junk.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn small primary" onclick="acceptCookies()">OK</button>
+        <button class="btn small ghost" onclick="dismissCookies()">Not now</button>
+      </div>
+    </div>
   </div>
-</section>
 
-<section id="compare">
-  <h2>💸 Local Price Comparison</h2>
-  <p>We actively check nearby Bowling Green shops to keep pricing competitive.</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Green Leaf BG</th>
-        <th>Shop A</th>
-        <th>Shop B</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1g Vape Cart</td>
-        <td class="best">$18</td>
-        <td>$22</td>
-        <td>$25</td>
-      </tr>
-      <tr>
-        <td>3.5g Flower</td>
-        <td class="best">$30</td>
-        <td>$35</td>
-        <td>$38</td>
-      </tr>
-      <tr>
-        <td>Edible Pack</td>
-        <td class="best">$15</td>
-        <td>$18</td>
-        <td>$20</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <script>
+    /***********************
+     * EDITABLE DATA ZONE  *
+     ***********************/
+    const DATA = {
+      name: "Green Leaf BG",
+      city: "Bowling Green, KY",
+      address: "YOUR STREET ADDRESS, Bowling Green, KY 42101",
+      phone: "(270) 000-0000",
+      mapsUrl: "https://www.google.com/maps",
+      // Business hours used for open/closed indicator (24h time)
+      hours: {
+        // 0=Sun ... 6=Sat
+        0: { open: "10:00", close: "21:00" },
+        1: { open: "10:00", close: "21:00" },
+        2: { open: "10:00", close: "21:00" },
+        3: { open: "10:00", close: "21:00" },
+        4: { open: "10:00", close: "22:00" },
+        5: { open: "10:00", close: "23:00" },
+        6: { open: "10:00", close: "23:00" }
+      },
 
-<section id="law">
-  <h2>⚖️ Legal & Compliance</h2>
-  <div class="card">
-    <p>All products sold comply with Kentucky and federal law, including Farm Bill–compliant hemp-derived cannabinoids where applicable.</p>
-    <p>No medical or recreational marijuana is sold unless permitted by current state law.</p>
-    <p>ID is required in-store. Age verification is mandatory.</p>
-    <p>This website is informational only and does not facilitate online cannabis sales.</p>
-  </div>
-</section>
+      deals: [
+        { title: "Vape Cart Tier Deal", desc: "Select 1g carts $18–$25. Ask in-store for today’s list.", badge: "HOT" },
+        { title: "Edible Mix & Match", desc: "Buy 2, save on the 3rd. (Varies by vendor.)", badge: "SAVE" },
+        { title: "Glass Weekly Rotation", desc: "New pieces every week. Discounts on last week’s stock.", badge: "NEW" }
+      ],
 
-<section id="location">
-  <h2>📍 Find Us</h2>
-  <div class="card">
-    <p><strong>Green Leaf BG</strong></p>
-    <p>Bowling Green, Kentucky</p>
-    <p>Locally owned • Walk-ins welcome</p>
-    <p><a href="https://www.google.com/maps" target="_blank">Open in Google Maps</a></p>
-  </div>
-</section>
+      categories: ["Featured","Flower","Vapes","Edibles","Pre-Rolls","Concentrates","Glass","Accessories"],
 
-<footer>
-  <p>© 2026 Green Leaf BG. All rights reserved. This site uses basic cookies for age verification only. No tracking nonsense. No fake security screens.</p>
-</footer>
+      products: [
+        { name:"THCa Flower 3.5g (Rotating)", cat:"Flower", price:30, featured:true, brand:"House", notes:"Compliant hemp-derived where applicable. Availability varies." },
+        { name:"1g Cartridge (Select)", cat:"Vapes", price:18, featured:true, brand:"Rotating", notes:"Ask staff for strain/terp list." },
+        { name:"Gummies 10-Pack", cat:"Edibles", price:15, featured:true, brand:"Rotating", notes:"Start low, go slow." },
+        { name:"Pre-Roll Single", cat:"Pre-Rolls", price:10, featured:false, brand:"House", notes:"Great for “I want to try” shoppers." },
+        { name:"Disposable Vape (2g)", cat:"Vapes", price:24, featured:false, brand:"Rotating", notes:"Inventory changes weekly." },
+        { name:"Glass Hand Pipe", cat:"Glass", price:20, featured:false, brand:"Local/Import", notes:"Different colors/styles in-store." },
+        { name:"Grinder (Metal)", cat:"Accessories", price:12, featured:false, brand:"Standard", notes:"Workhorse option." }
+      ],
 
-<script>
-  function enterSite() {
-    document.getElementById('age-gate').style.display = 'none';
-    localStorage.setItem('ageVerified', 'true');
-  }
+      competitors: ["Shop A","Shop B"],
 
-  function leaveSite() {
-    window.location.href = 'https://www.responsibility.org/';
-  }
+      priceCheckRows: [
+        { item:"1g Vape Cart", us:18, a:22, b:25 },
+        { item:"3.5g Flower", us:30, a:35, b:38 },
+        { item:"Edible Pack", us:15, a:18, b:20 }
+      ],
 
-  if (localStorage.getItem('ageVerified') === 'true') {
-    document.getElementById('age-gate').style.display = 'none';
-  }
-</script>
+      reviews: [
+        { who:"Local Customer", stars:5, text:"Clean shop, straight answers, no pressure." },
+        { who:"BG Regular", stars:5, text:"Prices make sense and the staff actually explains things." },
+        { who:"Passing Through", stars:4, text:"Quick stop. Easy in/out. Good selection of accessories." }
+      ]
+    };
 
+    /***********************
+     * AGE GATE + COOKIES  *
+     ***********************/
+    const AGE_KEY = "glbg_age_verified_v1";
+    const COOKIE_KEY = "glbg_cookie_ok_v1";
+
+    const ageGate = document.getElementById("ageGate");
+    document.getElementById("btnYes").addEventListener("click", () => {
+      localStorage.setItem(AGE_KEY, "true");
+      ageGate.style.display = "none";
+      showCookiesMaybe();
+    });
+
+    document.getElementById("btnNo").addEventListener("click", () => {
+      // Friendly exit. You can change this to your preferred destination.
+      window.location.href = "https://www.responsibility.org/";
+    });
+
+    if (localStorage.getItem(AGE_KEY) === "true") {
+      ageGate.style.display = "none";
+      showCookiesMaybe();
+    }
+
+    function showCookiesMaybe(){
+      if (localStorage.getItem(COOKIE_KEY) !== "true") {
+        document.getElementById("cookieBar").style.display = "block";
+      }
+    }
+    function acceptCookies(){
+      localStorage.setItem(COOKIE_KEY, "true");
+      document.getElementById("cookieBar").style.display = "none";
+    }
+    function dismissCookies(){
+      document.getElementById("cookieBar").style.display = "none";
+    }
+
+    /***********************
+     * UI HELPERS          *
+     ***********************/
+    const toastEl = document.getElementById("toast");
+    let toastT = null;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.style.display = "block";
+      clearTimeout(toastT);
+      toastT = setTimeout(()=>toastEl.style.display="none", 2600);
+    }
+    function copyText(text){
+      navigator.clipboard.writeText(text).then(()=>toast("Copied."), ()=>toast("Copy failed. Your browser is being dramatic."));
+    }
+    function scrollToId(id){
+      document.getElementById(id).scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    /***********************
+     * RENDER: DEALS       *
+     ***********************/
+    const dealsList = document.getElementById("dealsList");
+    function renderDeals(){
+      dealsList.innerHTML = "";
+      DATA.deals.forEach(d=>{
+        const el = document.createElement("div");
+        el.className = "deal";
+        el.innerHTML = `
+          <div>
+            <b>${escapeHtml(d.title)}</b>
+            <small>${escapeHtml(d.desc)}</small>
+          </div>
+          <div class="badge">${escapeHtml(d.badge)}</div>
+        `;
+        dealsList.appendChild(el);
+      });
+      document.getElementById("kpiDeal").textContent = `${DATA.deals.length} featured deals live`;
+    }
+
+    /***********************
+     * RENDER: PRODUCTS    *
+     ***********************/
+    const chips = document.getElementById("chips");
+    const grid = document.getElementById("productsGrid");
+    const q = document.getElementById("q");
+    const sortSel = document.getElementById("sort");
+    let activeCat = "Featured";
+
+    function renderChips(){
+      chips.innerHTML = "";
+      DATA.categories.forEach(cat=>{
+        const b = document.createElement("button");
+        b.className = "chip" + (cat===activeCat ? " active":"");
+        b.type = "button";
+        b.textContent = cat;
+        b.onclick = ()=>{ activeCat = cat; renderChips(); renderProducts(); };
+        chips.appendChild(b);
+      });
+    }
+
+    function renderProducts(){
+      const query = (q.value || "").toLowerCase().trim();
+      let list = [...DATA.products];
+
+      // Category filter
+      if (activeCat === "Featured") list = list.filter(p=>p.featured);
+      else list = list.filter(p=>p.cat === activeCat);
+
+      // Search
+      if (query) {
+        list = list.filter(p =>
+          (p.name + " " + p.cat + " " + (p.brand||"") + " " + (p.notes||"")).toLowerCase().includes(query)
+        );
+      }
+
+      // Sort
+      const sort = sortSel.value;
+      if (sort === "low") list.sort((a,b)=>a.price-b.price);
+      if (sort === "high") list.sort((a,b)=>b.price-a.price);
+      if (sort === "az") list.sort((a,b)=>a.name.localeCompare(b.name));
+      if (sort === "featured") list.sort((a,b)=> (b.featured===true) - (a.featured===true));
+
+      grid.innerHTML = "";
+      if (!list.length){
+        grid.innerHTML = `<div class="prod"><h3>No matches</h3><p>Try a different category or search term.</p></div>`;
+        return;
+      }
+
+      list.forEach(p=>{
+        const el = document.createElement("div");
+        el.className = "prod";
+        el.innerHTML = `
+          <h3>${escapeHtml(p.name)}</h3>
+          <p>${escapeHtml(p.brand ? p.brand + " · " : "")}${escapeHtml(p.cat)}</p>
+          <div class="row2">
+            <span class="price">$${Number(p.price).toFixed(0)}</span>
+            <span class="meta">${p.featured ? "Featured" : "In-store"}</span>
+          </div>
+          <div class="fine">${escapeHtml(p.notes || "")}</div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function resetFilters(){
+      activeCat = "Featured";
+      q.value = "";
+      sortSel.value = "featured";
+      renderChips();
+      renderProducts();
+      toast("Filters reset.");
+    }
+
+    q.addEventListener("input", ()=>renderProducts());
+    sortSel.addEventListener("change", ()=>renderProducts());
+
+    /***********************
+     * RENDER: PRICE CHECK *
+     ***********************/
+    const priceBody = document.getElementById("priceBody");
+    function renderPriceCheck(){
+      const [aName, bName] = DATA.competitors;
+      document.getElementById("thA").textContent = aName;
+      document.getElementById("thB").textContent = bName;
+
+      priceBody.innerHTML = "";
+      DATA.priceCheckRows.forEach(r=>{
+        const vals = [
+          { key:"us", label:"us", v:r.us },
+          { key:"a",  label:"a",  v:r.a  },
+          { key:"b",  label:"b",  v:r.b  }
+        ];
+        const best = Math.min(...vals.map(x=>x.v));
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${escapeHtml(r.item)}</td>
+          <td class="${r.us===best ? "best":"worse"}">$${r.us}</td>
+          <td class="${r.a===best ? "best":"worse"}">$${r.a}</td>
+          <td class="${r.b===best ? "best":"worse"}">$${r.b}</td>
+        `;
+        priceBody.appendChild(tr);
+      });
+    }
+
+    /***********************
+     * RENDER: REVIEWS     *
+     ***********************/
+    const rev = document.getElementById("reviews");
+    function renderReviews(){
+      rev.innerHTML = "";
+      DATA.reviews.forEach(r=>{
+        const el = document.createElement("div");
+        el.className = "deal";
+        el.innerHTML = `
+          <div>
+            <b>${escapeHtml(r.who)} · ${"★".repeat(r.stars)}${"☆".repeat(5-r.stars)}</b>
+            <small>${escapeHtml(r.text)}</small>
+          </div>
+          <div class="badge">REAL</div>
+        `;
+        rev.appendChild(el);
+      });
+    }
+
+    /***********************
+     * HOURS: OPEN/CLOSED  *
+     ***********************/
+    function parseTime(str){
+      const [hh, mm] = str.split(":").map(Number);
+      return { hh, mm };
+    }
+    function mins(t){ return t.hh*60 + t.mm; }
+
+    function updateOpenStatus(){
+      const now = new Date();
+      const day = now.getDay();
+      const cfg = DATA.hours[day];
+      const status = document.getElementById("openStatus");
+      const nowM = now.getHours()*60 + now.getMinutes();
+
+      if (!cfg){
+        status.textContent = "Hours not set";
+        return;
+      }
+      const o = mins(parseTime(cfg.open));
+      const c = mins(parseTime(cfg.close));
+      const open = nowM >= o && nowM < c;
+
+      status.textContent = open ? `Open now (closes ${cfg.close})` : `Closed (opens ${cfg.open})`;
+      document.querySelector(".dot").style.background = open ? "var(--good)" : "var(--bad)";
+    }
+
+    /***********************
+     * PAGE INIT           *
+     ***********************/
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function initLocation(){
+      document.getElementById("locName").textContent = DATA.name;
+      document.getElementById("locAddress").textContent = DATA.address;
+      document.getElementById("locPhone").textContent = `Phone: ${DATA.phone}`;
+      document.getElementById("mapBtn").href = DATA.mapsUrl;
+
+      // Show a readable hours string
+      const h = DATA.hours;
+      const fmt = (d)=> h[d] ? `${h[d].open}–${h[d].close}` : "—";
+      document.getElementById("locHours").textContent =
+        `Hours: Sun ${fmt(0)} · Mon ${fmt(1)} · Tue ${fmt(2)} · Wed ${fmt(3)} · Thu ${fmt(4)} · Fri ${fmt(5)} · Sat ${fmt(6)}`;
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderDeals();
+    renderChips();
+    renderProducts();
+    renderPriceCheck();
+    renderReviews();
+    initLocation();
+    updateOpenStatus();
+    setInterval(updateOpenStatus, 60_000);
+  </script>
 </body>
 </html>
